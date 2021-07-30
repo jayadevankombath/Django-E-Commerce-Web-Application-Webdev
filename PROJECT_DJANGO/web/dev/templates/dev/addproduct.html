@@ -1,0 +1,34 @@
+{% extends "dev/masteradmin.html" %}
+{% block content %}
+<div class="container">
+<div style="margin-top:40px;margin-bottom:40px;background-color:white;padding:30px 60px 30px 60px;">
+<h1>Add New Product</h1>
+    <div class="card">
+        <div class="card-body">
+        <i style="color:#349beb;float:right;">{{ msg }}</i>
+            <form action="/upload_product/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group" style="padding:20px;">
+                <label >Name </label>
+                <input type="text" name="pname" class="form-control" placeholder="Enter product name" required>
+                <label>Color </label>
+                <input type="text" name="pcolor" class="form-control" placeholder="Enter product colour" required>
+                <label>Brand</label>
+                <input type="text" name="pbrand" class="form-control" placeholder="Enter product brand name" required>
+                <label>Size</label>
+                <input type="number" name="psize" class="form-control" placeholder="Enter product size" required>
+                <label>Price</label>
+                <input type="number" name="pprice" class="form-control" placeholder="₹:Enter product price" required><br>
+                <label>Photo : </label>
+                <input type="file" name="pfile" accept="image/*" class="form-control-file" value="Upload Photo">
+                </div>
+                <a href="/adminhome/" class="btn btn-outline-primary">BACK</a>
+                <div class="form-group" style="float:right;">
+                <button type="submit" class="btn btn-primary">ADD PRODUCT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

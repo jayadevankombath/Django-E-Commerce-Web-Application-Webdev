@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link href="{% static 'dev/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <title>Registration </title>
+    <style rel="stylesheet" type="text/css">
+    body{
+        background:url({% static 'dev/img/userloging_bg.jpg' %});
+        background-size:cover;
+    }
+    </style>
+</head>
+<body style="background-color:#f2f2f2;">
+<div style="margin-top:60px;">
+ <div class="row">
+  <div class="col-sm-4">
+  </div>
+  <div class="col-sm-4" style="background-color:white;padding: 30px 60px 30px 60px;border-radius:15px;">
+  <br>
+  <h1>Admin Login</h1>
+  <hr>
+  <form action="/logadmin/" method="POST" name="adminlogin">
+  {% csrf_token %}
+   <div class="form-group">
+    <label>Username</label>
+    <input type="text" name="adminuser" id="adminuser" class="form-control" placeholder="Enter your username" style="border-radius:25px;" required>
+    <br>
+    <label>Password</label>
+    <input type="password" name="adminpass" id="adminpass" class="form-control" placeholder="Enter your password" style="border-radius:25px;" required>
+    <br>
+    <p style="color:red;">{{ error }}</p>
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+   </div>
+  </form>
+  <a href="/login_page/" class="btn btn-block btn-outline-primary">Back</a>
+  </div>
+  <div class="col-sm-4">
+  </div>
+ </div>
+</div>
+</body>
+</html>

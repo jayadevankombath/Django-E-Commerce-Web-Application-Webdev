@@ -1,0 +1,39 @@
+{% extends "dev/masteradmin.html" %}
+{% block content %}
+{% load static %}
+<div class="container">
+<div style="margin-top:40px;margin-bottom:40px;background-color:white;padding:30px 60px 30px 60px;">
+<h1>Edit Page</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action="/upload_pro/{{ product.id }}" method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+                {% csrf_token %}
+                <div class="form-group" style="padding:20px;">
+                <h4>ID :&nbsp<i>{{ product.id }}</i></h4>{{ error }}<br>
+                <label >Name </label>
+                <input type="text" name="pname" value="{{ product.Product_name }}" class="form-control" placeholder="Enter product name" required>
+                <label>Color </label>
+                <input type="text" name="pcolor" value="{{ product.Product_color }}" class="form-control" placeholder="Enter product colour" required>
+                <label>Brand</label>
+                <input type="text" name="pbrand" value="{{ product.Product_brand }}" class="form-control" placeholder="Enter product brand name" required>
+                <label>Size</label>
+                <input type="number" name="psize" value="{{ product.Product_size }}" class="form-control" placeholder="Enter product size" required>
+                <label>Price</label>
+                <input type="number" name="pprice" value="{{ product.Product_price }}" class="form-control" placeholder="₹:Enter product price" required>
+                <br>
+                <img src="{% static 'media/' %}{{ product.Product_photo }}" style="height:200px;width:auto;" class="img-fluid" alt="product_image">
+                <br>
+                <label>Photo : </label>
+                <input type="file" name="pfile" class="form-control-file">
+                </div>
+                <a href="/adminhome/" class="btn btn-outline-primary">Back</a>
+                <div class="form-group" style="float:right;">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

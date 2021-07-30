@@ -1,0 +1,32 @@
+{% extends 'dev/master.html' %}
+{% block content %}
+{% load static %}
+<div style="background-color:white;margin-top:10px;">
+<div class="container" style="padding-top:30px;padding-bottom:30px;" >
+    <div class="row" style="height:auto;min-height:500px;marging-right:5px;">
+        <div class="col-sm-6" style="padding:10px;">
+            <img src="{% static 'media/' %}{{ product.Product_photo }}" class="img-fluid" style="max-height:250px;">
+        </div>
+        <div class="col-sm-6">
+        <h2>{{ product.Product_name }}</h2>
+        <p>Color : {{ product.Product_color }}</p>
+        <p>Brand : {{ product.Product_brand }}</p>
+        <p>Size : {{ product.Product_size }}</p>
+        <p>Price : ₹ <i style="color:green;">{{ product.Product_price }}</i></p>
+        <form action="/buy/{{ product.id }}" method="POST">
+        {% csrf_token %}
+        <div class="form-group" style="width:180px;">
+            <label>Quantity : </label>
+            <input type="number" name="txtqnty" class="form-control" style="width:90px;float:right;" required>
+        </div>
+        <h5><span class="badge badge-secondary">{{ msg }}</span></h5>
+        <div align="right">
+            <button type="submit" class="btn btn-primary btn-sm">Buy</button>
+        </div>
+        </form>
+        </div>
+    
+    </div>
+</div>
+</div>
+{% endblock %}

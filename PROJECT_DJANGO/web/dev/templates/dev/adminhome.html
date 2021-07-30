@@ -1,0 +1,28 @@
+{% extends "dev/masteradmin.html" %}
+
+{% block content %}
+{% load static %}
+<div style="background-color:white;margin:20px;">
+<br>
+<h2>Product List</h2>
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <tr><th>ID</th><th>Name</th><th>Color</th><th>Brand</th><th>Size</th><th>Price</th><th>Photo</th><th>Action</th>
+        </tr>
+        {% for i in Product %}
+        <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.Product_name }}</td>
+        <td>{{ i.Product_color }}</td>
+        <td>{{ i.Product_brand }}</td>
+        <td>{{ i.Product_size }}</td>
+        <td style="color:#2ac728;font-weight:bold;">₹{{ i.Product_price}}</td>
+        <td><img style="height:autox;width:150px;" class="img-fluid img-thumbnail" src="{% static 'media/' %}{{i.Product_photo}}" alt="Error Loading"></td>
+        <td><a href="/edit_pro/{{ i.id }}" class="btn btn-warning btn-sm">Edit</a>&nbsp;<a href="/delete_pro/{{ i.id }}" class="btn btn-warning btn-sm">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</div>
+
+{% endblock %}

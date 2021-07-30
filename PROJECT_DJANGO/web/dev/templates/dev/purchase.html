@@ -1,0 +1,53 @@
+{% extends "dev/masteradmin.html" %}
+{% block content %}
+<div class="container">
+<div style="margin-top:40px;margin-bottom:40px;background-color:white;padding:30px 60px 30px 60px;">
+<h1>Purchase Product</h1>
+    <div class="card">
+        <div class="card-body">
+        <script>
+                $(document).ready(function(){
+                    $("#pprice").change(function(){
+                        var qty = $("#pqnty").val();
+                        var price = $("#pprice").val();
+                        $("#pamt").val(qty * price);
+
+                    });
+                    $("#pqnty").change(function(){
+                        var qty = $("#pqnty").val();
+                        var price = $("#pprice").val();
+                        $("#pamt").val(qty * price);
+
+                    });
+                });
+        </script>
+        <i style="color:#349beb;float:right;">{{ msg }}</i>
+            <form action="/uploadpur/" method="POST">
+                {% csrf_token %}
+                <div class="form-group" style="padding:20px;">
+                <label >Product Name </label>
+                <select name="productid" class="form-control">
+                {% for i in product %}
+                <option value="{{ i.id }}">{{ i.Product_name }}</option>
+                {% endfor %}
+                </select>
+                <br>
+                <label>Quantity</label>
+                <input type="number" name="pur_qnty" id="pqnty" class="form-control" placeholder="Enter quantity">
+                <label>Price</label>
+                <input type="number" name="pur_price" id="pprice" class="form-control" placeholder="Enter price" >
+                
+                <label>Total Amount</label>
+                <input type="number" name="pur_amt" id="pamt" class="form-control" placeholder="For Total Amount Just Click Here....">
+                </div>
+                <a href="/adminhome/" class="btn btn-outline-primary">BACK</a>
+                <div class="form-group" style="float:right;">
+                <button type="submit" class="btn btn-primary">Purchase</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+

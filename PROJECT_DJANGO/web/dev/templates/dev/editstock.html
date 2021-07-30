@@ -1,0 +1,21 @@
+{% extends "dev/masteradmin.html" %}
+
+{% block content %}
+<div style="background-color:white;margin:20px;padding:20px;">
+<h2>Edit Stock</h2>
+    <form action="/update_stock/{{ s.id }}" method="POST" name="updateStock">
+    {% csrf_token %}
+    <b>ID:&nbsp<i>{{ s.Product_id }}</i></b>
+    <div class="form-group" style="padding:30px;">
+    <label>Quantity</label>
+    <input type="number" name="pqnty"  value="{{ s.P_quantity }}" class="form-control">
+    <br>
+    <div class="form-group">
+    <a href="/adminhome/" class="btn btn-outline-primary" style="float:left;">Back</a>
+    <button type="submit" class="btn btn-primary" style="float:right;">Save Changes</button>
+    </div>
+    </div>
+    
+    </form>
+</div>
+{% endblock %}
